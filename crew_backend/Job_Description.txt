@@ -1,0 +1,28 @@
+Job Title: Senior Full-Stack Engineer (React, Node.js & Cloud)
+Company: NexaFlow Systems
+Location: Remote (Global)
+Employment Type: Full-Time
+
+About the Role:
+We are seeking an experienced Senior Full-Stack Engineer to design, scale, and maintain our cloud-native enterprise intelligence platform. You will spearhead architectural decisions, build responsive web applications, and develop high-throughput microservices.
+
+Key Responsibilities:
+- Design, build, and maintain frontend interfaces using React, TypeScript, and modern CSS frameworks (Tailwind CSS).
+- Develop robust RESTful and GraphQL APIs using Node.js, Express, and Python.
+- Architect and optimize relational databases (PostgreSQL) and NoSQL stores (Redis, MongoDB).
+- Build and orchestrate CI/CD deployment pipelines on AWS (ECS, Lambda, S3, CloudFront) and Docker containers.
+- Collaborate with product managers, UX designers, and ML engineers to ship customer-facing AI-powered features.
+- Lead code reviews, mentor mid-level and junior engineers, and drive best engineering practices.
+
+Required Qualifications & Technical Skills:
+- 5+ years of software development experience delivering production applications.
+- Strong proficiency in TypeScript, JavaScript (ES6+), React, and state management.
+- Demonstrated hands-on experience with Node.js and Express backend development.
+- Solid understanding of SQL database design, query optimization, and schema migrations.
+- Working experience with Docker containerization and cloud infrastructure (AWS or GCP).
+- Familiarity with Automated Testing (Jest, React Testing Library, Playwright or Cypress).
+
+Preferred Qualifications:
+- Experience integrating Large Language Models (LLMs) or generative AI APIs (Gemini, OpenAI).
+- Bachelor's degree in Computer Science, Software Engineering, or equivalent practical experience.
+- Experience with microservices, Redis caching, and message queues (Kafka, RabbitMQ).

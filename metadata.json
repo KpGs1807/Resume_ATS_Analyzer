@@ -1,0 +1,6 @@
+{
+  "name": "Resume and Job Description Analyzer",
+  "description": "Upload or type job descriptions, upload resumes with deletion controls, ATS score calculation, keyword match analysis, and interview question generation.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,89 @@
+# configuration/tasks.yaml
+extract_jd_keywords_task:
+  description: >
+    Analyze the following job description in full:
+
+    --- BEGIN JOB DESCRIPTION ---
+    {job_description_text}
+    --- END JOB DESCRIPTION ---
+
+    1. Extract all required and preferred qualifications.
+    2. Categorize extracted items into:
+       - Technical Skills (programming languages, frameworks, architecture)
+       - Soft Skills (leadership, communication, problem solving)
+       - Tools & Technologies (databases, cloud platforms, CI/CD tools)
+       - Minimum & Preferred Education / Certifications
+       - Required Years of Experience
+       - Primary Day-to-Day Responsibilities
+       - Any other notable domain-specific keywords
+    3. Return ONLY the structured fields required by the output schema.
+  expected_output: >
+    A JSON object with: technicalSkills (list), softSkills (list),
+    toolsAndTechnologies (list), qualifications (list),
+    experienceRequirements (string), keyResponsibilities (list),
+    otherKeywords (list).
+  agent: job_description_agent
+
+analyze_resume_task:
+  description: >
+    Analyze the following candidate resume in full:
+
+    --- BEGIN RESUME ---
+    {resume_text}
+    --- END RESUME ---
+
+    1. Compare the candidate's skills, accomplishments, and career history against
+       the job requirements extracted in the previous task.
+    2. Determine exact matches where the candidate meets or exceeds requirements.
+    3. Pinpoint missing skills, omitted industry keywords, and qualification gaps.
+    4. Highlight the candidate's strongest competitive advantages and draft 3-5
+       concrete recommendations for improvement.
+  expected_output: >
+    A JSON object with: matchingSkills (list), matchingExperience (list),
+    matchingQualifications (list), missingKeywords (list), missingSkills (list),
+    missingQualifications (list), strengthsSummary (string), and
+    improvementAreas (list of objects each with "area" and "suggestion").
+  agent: resume_analysis_agent
+
+calculate_ats_score_task:
+  description: >
+    Using the extracted job requirements and the resume match analysis from the
+    previous two tasks, compute an objective ATS audit:
+    1. Evaluate the resume match results and compute an objective ATS score from 0 to 100.
+    2. Compute a Match Percentage (0% to 100%).
+    3. Determine the Suitability Verdict:
+       - 80-100: "High" (Strong contender, ready for interview)
+       - 60-79: "Moderate" (Good foundational match, requires strategic tweaks)
+       - 0-59: "Low" (Significant qualification gaps or major missing keywords)
+    4. Provide a numerical breakdown across four key dimensions:
+       - Keyword Match (0-100)
+       - Skills Alignment (0-100)
+       - Experience Relevance (0-100)
+       - Education & Qualifications (0-100)
+    5. List the top 3-5 high-impact recommendations to boost the ATS score.
+  expected_output: >
+    A JSON object with: score (number 0-100), matchPercentage (number 0-100),
+    suitability (one of "High", "Moderate", "Low"), verdict (1-2 sentence string),
+    explanation (string), breakdown (object with keywordMatch, skillsAlignment,
+    experienceRelevance, educationQualifications), and topRecommendations (list).
+  agent: resume_ats_score_agent
+
+generate_interview_questions_task:
+  description: >
+    Using the job requirements, the resume match analysis, and the ATS score
+    breakdown from the previous tasks:
+    1. Generate 12 to 16 highly tailored interview questions divided into:
+       - Technical Questions (testing depth in the core tools/languages required)
+       - Scenario-Based Questions (simulating real-world engineering or role challenges)
+       - Behavioral Questions (using the STAR method: Situation, Task, Action, Result)
+       - Job-Specific Questions (evaluating domain fit for this specific role)
+    2. For every single question, provide:
+       - A comprehensive, high-scoring suggested answer
+       - The strategic rationale explaining why the interviewer asks this question
+       - Actionable candidate delivery tips
+    3. Give every question a unique short id (e.g. "q1", "q2", ...).
+  expected_output: >
+    A JSON object with a single field "questions": a list of objects, each with
+    id, category (one of "Technical", "Scenario-Based", "Behavioral",
+    "Job-Specific"), question, suggestedAnswer, whyThisQuestion, candidateTip.
+  agent: interview_questions_agent
